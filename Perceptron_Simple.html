@@ -815,11 +815,13 @@ a:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
 &lt;section class=&quot;panel two&quot;&gt;
   &lt;div&gt;
     &lt;div class=&quot;sec-head&quot; style=&quot;margin-bottom:14px&quot;&gt;&lt;span class=&quot;tag&quot;&gt;01&lt;/span&gt;&lt;h2&gt;Cómo decide la neurona&lt;/h2&gt;&lt;/div&gt;
-    &lt;div class=&quot;svgbox&quot;&gt;&lt;svg id=&quot;neuron&quot; viewBox=&quot;0 0 520 240&quot; width=&quot;100%&quot; role=&quot;img&quot; aria-label=&quot;Diagrama del perceptrón: entradas x1 y x2 con pesos w1 y w2, sesgo b, suma z y función escalón que produce ŷ&quot;&gt;&lt;/svg&gt;&lt;/div&gt;
+    &lt;div class=&quot;svgbox&quot;&gt;&lt;svg id=&quot;neuron&quot; viewBox=&quot;0 0 520 262&quot; width=&quot;100%&quot; role=&quot;img&quot; aria-label=&quot;Diagrama del perceptrón: entradas x1 y x2 con pesos w1 y w2 y sesgo b, transformación en la suma z, función de activación f(z) y salida ŷ&quot;&gt;&lt;/svg&gt;&lt;/div&gt;
   &lt;/div&gt;
   &lt;div class=&quot;formula&quot;&gt;
-    &lt;div class=&quot;eq&quot;&gt;z = w₁x₁ + w₂x₂ + b&lt;small&gt;Entrada neta: combinación lineal de las entradas más el sesgo.&lt;/small&gt;&lt;/div&gt;
-    &lt;div class=&quot;eq&quot;&gt;ŷ = 1 si z ≥ 0, si no 0&lt;small&gt;Función escalón de Heaviside.&lt;/small&gt;&lt;/div&gt;
+    &lt;div class=&quot;eq&quot;&gt;x₁, x₂ ∈ {0, 1}&lt;small&gt;&lt;b&gt;Entradas:&lt;/b&gt; los valores de la compuerta lógica que recibe la neurona.&lt;/small&gt;&lt;/div&gt;
+    &lt;div class=&quot;eq&quot;&gt;z = w₁x₁ + w₂x₂ + b&lt;small&gt;&lt;b&gt;Transformación:&lt;/b&gt; cada entrada se multiplica por su peso y se suma el sesgo.&lt;/small&gt;&lt;/div&gt;
+    &lt;div class=&quot;eq&quot;&gt;f(z) = 1 si z ≥ 0, si no 0&lt;small&gt;&lt;b&gt;Función de activación:&lt;/b&gt; decide si la neurona se activa según el valor de z.&lt;/small&gt;&lt;/div&gt;
+    &lt;div class=&quot;eq&quot;&gt;ŷ = f(z)&lt;small&gt;&lt;b&gt;Salida:&lt;/b&gt; la predicción de la neurona (0 o 1), que se compara con el valor real y.&lt;/small&gt;&lt;/div&gt;
     &lt;div class=&quot;eq&quot;&gt;w ← w + η·e·x &amp;nbsp; b ← b + η·e&lt;small&gt;Regla de aprendizaje, con error e = y − ŷ. Solo corrige cuando se equivoca.&lt;/small&gt;&lt;/div&gt;
   &lt;/div&gt;
 &lt;/section&gt;
@@ -950,7 +952,9 @@ function el(tag,attrs,parent,text){const e=document.createElementNS(NS,tag);for(
   el(&quot;text&quot;,{x:320,y:110,&quot;text-anchor&quot;:&quot;middle&quot;,&quot;font-size&quot;:14,&quot;font-style&quot;:&quot;italic&quot;,fill:mut},s,&quot;z&quot;);
   el(&quot;rect&quot;,{x:350,y:88,width:74,height:64,rx:6,fill:&quot;var(--card)&quot;,stroke:ink,&quot;stroke-width&quot;:2.5},s);
   el(&quot;polyline&quot;,{points:&quot;362,138 387,138 387,102 412,102&quot;,fill:&quot;none&quot;,stroke:&quot;var(--amber)&quot;,&quot;stroke-width&quot;:3},s);
-  el(&quot;text&quot;,{x:387,y:172,&quot;text-anchor&quot;:&quot;middle&quot;,&quot;font-size&quot;:13,fill:mut},s,&quot;escalón&quot;);
+  el(&quot;text&quot;,{x:387,y:172,&quot;text-anchor&quot;:&quot;middle&quot;,&quot;font-size&quot;:13,fill:mut},s,&quot;f(z)&quot;);
+  [[40,&quot;Entradas&quot;],[260,&quot;Transformación&quot;],[387,&quot;Función de activación&quot;],[500,&quot;Salida&quot;]].forEach(([x,t])=&gt;
+    el(&quot;text&quot;,{x,y:252,&quot;text-anchor&quot;:&quot;middle&quot;,&quot;font-size&quot;:12,&quot;font-weight&quot;:700,fill:ink},s,t));
   el(&quot;line&quot;,{x1:424,y1:120,x2:472,y2:120,stroke:ink,&quot;stroke-width&quot;:2},s);
   el(&quot;polygon&quot;,{points:&quot;472,114 484,120 472,126&quot;,fill:ink},s);
   el(&quot;text&quot;,{x:500,y:127,&quot;text-anchor&quot;:&quot;middle&quot;,&quot;font-size&quot;:19,&quot;font-weight&quot;:700,fill:ink},s,&quot;ŷ&quot;);
